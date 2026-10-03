@@ -220,17 +220,22 @@ function procesarFormulario(e) {
 // =======================================================
 // BLOQUE 5: DETECCION AUTOMÁTICA DE LA PÁGINA ACTUAL
 // =======================================================
+// Proteger las páginas del catálogo
 document.addEventListener('DOMContentLoaded', () => {
-    // Lee la etiqueta 'data-marca' del body para saber en qué página estamos
-    const marcaPagina = document.body.getAttribute('data-marca');
-    if (marcaPagina) {
-        filtrarPorMarca(marcaPagina);
+    // Detecta si la página actual es la de login
+    const esPaginaLogin = window.location.pathname.endsWith('login.html');
+    const estaLogueado = localStorage.getItem('sesionIniciada') === 'true';
+
+    // Si NO está en login y NO ha iniciado sesión, lo mandamos a login.html
+    if (!esPaginaLogin && !estaLogueado) {
+        window.location.href = "login.html";
     }
 });
 
 // =======================================================
 // BLOQUE 6: LÓGICA DE VALIDACIÓN DE INICIO DE SESIÓN
 // =======================================================
+// Validar credenciales al entrar
 function validarLogin(e) {
     e.preventDefault();
     const user = document.getElementById('usuario').value;
@@ -239,9 +244,11 @@ function validarLogin(e) {
 
     const passGuardada = localStorage.getItem(user);
 
+    // Si el usuario y contraseña son correctos:
     if ((user === "admin" && pass === "1234") || (passGuardada && passGuardada === pass)) {
-        // Marcamos que el usuario ya inició sesión
+        // Guardamos el estado de la sesión en el navegador
         localStorage.setItem('sesionIniciada', 'true');
+        
         // Redirigimos al catálogo
         window.location.href = "index.html";
     } else {
