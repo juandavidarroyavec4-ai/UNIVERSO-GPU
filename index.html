@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GPU Universe - El Portal de Tarjetas Gráficas</title>
+    <!-- Vinculación con los estilos globales -->
+    <link rel="stylesheet" href="estilos.css">
+</head>
+<body>
+
+    <!-- ======================================================= -->
+    <!-- SECCIÓN 1: ENCABEZADO PRINCIPAL Y BARRA DE NAVEGACIÓN   -->
+    <!-- (Contiene el logo de la página y el menú multipágina)   -->
+    <!-- ======================================================= -->
+    <header class="header">
+        <!-- Bloque del Logo -->
+        <div class="logo">
+            <h1>GPU Universe 🚀</h1>
+        </div>
+        
+        <!-- Menú de navegación principal que conecta con las otras páginas -->
+        <nav class="nav">
+            <ul>
+                <li><a href="index.html" class="active">Inicio</a></li>
+                <li><a href="nvidia.html">NVIDIA</a></li>
+                <li><a href="amd.html">AMD Radeon</a></li>
+                <li><a href="intel.html">Intel Arc</a></li>
+            </ul>
+        </nav>
+    </header>
+
+
+    <!-- ======================================================= -->
+    <!-- SECCIÓN 2: BANNER PRINCIPAL (HERO SECTION)              -->
+    <!-- (Recuadro visual de bienvenida con imagen de fondo)     -->
+    <!-- ======================================================= -->
+    <section class="hero">
+        <div class="hero-content">
+            <h2>Explora las Mejores Tarjetas Gráficas del Mercado</h2>
+            <p>Guía especializada sobre arquitectura, VRAM, rendimiento en juegos y trabajo profesional.</p>
+            
+            <!-- Grupo de botones con acceso directo a cada marca -->
+            <div class="hero-buttons">
+                <a href="nvidia.html" class="btn-primary nvidia-btn">Ver NVIDIA</a>
+                <a href="amd.html" class="btn-primary amd-btn">Ver AMD</a>
+                <a href="intel.html" class="btn-primary intel-btn">Ver Intel</a>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- ======================================================= -->
+    <!-- SECCIÓN 3: INFORMACIÓN TEÓRICA Y CONCEPTOS              -->
+    <!-- (Recuadros explicativos sobre la función de las GPUs)   -->
+    <!-- ======================================================= -->
+    <main class="container section">
+        <h2 class="title-section">¿Para qué sirve una Tarjeta Gráfica (GPU)?</h2>
+        
+        <!-- Grid o cuadrícula que contiene las 3 tarjetas de información -->
+        <div class="info-grid">
+            
+            <!-- Tarjeta 1: Procesamiento visual -->
+            <div class="info-box">
+                <h3>Procesamiento Visual</h3>
+                <p>La GPU procesa los datos visuales, convirtiendo código en fotogramas complejos en milisegundos. Libera al procesador (CPU) de la carga gráfica pesada.</p>
+            </div>
+            
+            <!-- Tarjeta 2: Renderizado -->
+            <div class="info-box">
+                <h3>Renderizado y Edición</h3>
+                <p>Acelera la exportación de video en 4K/8K, efectos visuales y modelado en 3D en programas como Blender, Premiere o Cinema 4D.</p>
+            </div>
+            
+            <!-- Tarjeta 3: Inteligencia Artificial -->
+            <div class="info-box">
+                <h3>Inteligencia Artificial</h3>
+                <p>Los núcleos especializados (Tensor Cores / Matrix Engines) permiten entrenar modelos de IA y ejecutar tecnologías como DLSS o XeSS.</p>
+            </div>
+
+        </div>
+
+
+        <!-- ======================================================= -->
+        <!-- SECCIÓN 4: RECUADRO INTERACTIVO - CALCULADORA           -->
+        <!-- (Formulario donde el usuario simula su presupuesto)     -->
+        <!-- ======================================================= -->
+        <section class="section container bg-dark shadow-box">
+            <h2 class="title-section">Calculadora Rápida de Presupuesto</h2>
+            
+            <!-- Formulario interactivo que procesa la lógica en JS -->
+            <form id="formGpu" class="form-custom" onsubmit="procesarFormulario(event)">
+                <div class="form-group">
+                    <label for="nombre">Tu Nombre:</label>
+                    <input type="text" id="nombre" required placeholder="Ingresa tu nombre">
+                </div>
+                
+                <div class="form-group">
+                    <label for="presupuesto">Presupuesto Estimado (COP):</label>
+                    <input type="number" id="presupuesto" required placeholder="Ej: 2000000">
+                </div>
+                
+                <button type="submit" class="btn-submit">Sugerir Gama Ideal</button>
+            </form>
+            
+            <!-- Recuadro donde aparecerá la respuesta del presupuesto vía JS -->
+            <div id="mensajeResultado" class="resultado-oculto"></div>
+        </section>
+    </main>
+
+
+    <!-- ======================================================= -->
+    <!-- SECCIÓN 5: PIE DE PÁGINA (FOOTER)                       -->
+    <!-- ======================================================= -->
+    <footer class="footer">
+        <p>&copy; 2026 GPU Universe - Catálogo Interactivo Multipágina</p>
+    </footer>
+
+    <!-- Vinculación del script con las funciones en JavaScript -->
+    <script src="acciones.js"></script>
+</body>
+</html>

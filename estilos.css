@@ -1,0 +1,377 @@
+/* ==========================================================================
+   HOJA DE ESTILOS CSS - ESTRUCTURA Y PERSONALIZACIÓN DE RECUADROS
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   1. RESET Y CONFIGURACIÓN GLOBAL DE LA PÁGINA
+   -------------------------------------------------------------------------- */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    background-color: #0d1117; /* Fondo oscuro tipo gamer / GitHub */
+    color: #c9d1d9;           /* Texto claro de alta legibilidad */
+    line-height: 1.6;
+}
+
+.container {
+    width: 90%;
+    max-width: 1200px;
+    margin: auto;
+}
+
+.section {
+    padding: 30px 0;
+}
+
+
+/* --------------------------------------------------------------------------
+   2. RECUADRO SUPERIOR: HEADER Y BARRA DE NAVEGACIÓN
+   -------------------------------------------------------------------------- */
+.header {
+    background-color: #161b22;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 5%;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    border-bottom: 2px solid #30363d;
+}
+
+/* Bordes identificadores para cada marca */
+.border-nvidia { border-bottom-color: #76b900; }
+.border-amd { border-bottom-color: #ed1d24; }
+.border-intel { border-bottom-color: #0071c5; }
+
+/* Colores de títulos para cada marca */
+.color-nvidia { color: #76b900; }
+.color-amd { color: #ed1d24; }
+.color-intel { color: #0071c5; }
+
+.nav ul {
+    display: flex;
+    list-style: none;
+    gap: 15px;
+}
+
+.nav a {
+    color: #f0f6fc;
+    text-decoration: none;
+    font-weight: 600;
+    padding: 5px 10px;
+    border-radius: 4px;
+    transition: 0.3s;
+}
+
+.nav a:hover, .nav a.active {
+    background-color: #21262d;
+    color: #58a6ff;
+}
+
+
+/* --------------------------------------------------------------------------
+   3. SECCIÓN HERO Y BANNERS TEMÁTICOS (IMÁGENES DE PORTADA)
+   -------------------------------------------------------------------------- */
+.hero {
+    background: linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.8)), url('https://images.unsplash.com/photo-1591488320449-011701bb6704?auto=format&fit=crop&w=1200&q=80') center/cover;
+    padding: 80px 20px;
+    text-align: center;
+}
+
+.hero-content h2 {
+    font-size: 2.2rem;
+    color: #fff;
+    margin-bottom: 10px;
+}
+
+.hero-buttons {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+    margin-top: 20px;
+    flex-wrap: wrap;
+}
+
+/* Botones de acción principal */
+.btn-primary {
+    padding: 10px 20px;
+    text-decoration: none;
+    font-weight: bold;
+    border-radius: 6px;
+    color: black;
+    transition: transform 0.2s;
+}
+
+.btn-primary:hover {
+    transform: scale(1.05);
+}
+
+.nvidia-btn { background-color: #76b900; }
+.amd-btn { background-color: #ed1d24; color: white; }
+.intel-btn { background-color: #0071c5; color: white; }
+
+/* Fondos temáticos por marca */
+.banner-brand {
+    padding: 40px 20px;
+    text-align: center;
+    color: white;
+}
+
+.bg-nvidia { background: linear-gradient(135deg, #000000, #1b3d00); }
+.bg-amd { background: linear-gradient(135deg, #000000, #4d0003); }
+.bg-intel { background: linear-gradient(135deg, #000000, #002b4d); }
+
+
+/* --------------------------------------------------------------------------
+   4. RECUADROS INFORMATIVOS Y CARDS DE CONCEPTOS
+   -------------------------------------------------------------------------- */
+.title-section {
+    color: #58a6ff;
+    text-align: center;
+    margin-bottom: 25px;
+    font-size: 1.8rem;
+}
+
+.info-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 20px;
+    margin-bottom: 40px;
+}
+
+/* Estilo para los bloques o cuadros explicativos */
+.info-box, .tech-info {
+    background-color: #161b22;
+    padding: 20px;
+    border-radius: 8px;
+    border: 1px solid #30363d;
+}
+
+.features-list {
+    margin-top: 10px;
+    padding-left: 20px;
+}
+
+.features-list li {
+    margin-bottom: 8px;
+}
+
+
+/* --------------------------------------------------------------------------
+   5. RECUADROS DE LAS TARJETAS GRÁFICAS (CATÁLOGO INDIVIDUAL / CARDS)
+   -------------------------------------------------------------------------- */
+.filter-container {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 25px;
+}
+
+/* Recuadro del campo de búsqueda */
+.filter-container input {
+    width: 100%;
+    max-width: 450px;
+    padding: 12px 18px;
+    border-radius: 25px;
+    border: 1px solid #30363d;
+    background-color: #161b22;
+    color: white;
+    font-size: 1rem;
+    outline: none;
+}
+
+.filter-container input:focus {
+    border-color: #58a6ff;
+}
+
+/* Grilla contenedora de las tarjetas */
+.cards-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 25px;
+}
+
+/* ESTILO DEL RECUADRO DE CADA TARJETA GRÁFICA (CARD) */
+.gpu-card {
+    background-color: #161b22;
+    border-radius: 10px;
+    padding: 20px;
+    border: 1px solid #30363d;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    transition: transform 0.3s, border-color 0.3s;
+}
+
+/* Efecto al pasar el mouse por encima del recuadro */
+.gpu-card:hover {
+    transform: translateY(-5px);
+    border-color: #58a6ff;
+}
+
+/* Imagen dentro del recuadro de la GPU */
+.gpu-card img {
+    width: 100%;
+    height: 160px;
+    object-fit: cover;
+    border-radius: 6px;
+    margin-bottom: 15px;
+}
+
+/* Etiquetas o Badges para diferenciar las marcas */
+.badge {
+    align-self: flex-start;
+    padding: 3px 10px;
+    border-radius: 12px;
+    font-size: 0.75rem;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.badge-NVIDIA { background-color: #76b900; color: black; }
+.badge-AMD { background-color: #ed1d24; color: white; }
+.badge-Intel { background-color: #0071c5; color: white; }
+
+/* Recuadro del precio */
+.gpu-price {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #39d353;
+    margin-top: 10px;
+}
+
+
+/* --------------------------------------------------------------------------
+   6. RECUADRO DEL FORMULARIO Y RESULTADOS
+   -------------------------------------------------------------------------- */
+.bg-dark {
+    background-color: #161b22;
+    padding: 30px;
+    border-radius: 10px;
+    border: 1px solid #30363d;
+}
+
+.form-custom {
+    max-width: 500px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+}
+
+.form-group label {
+    margin-bottom: 5px;
+}
+
+.form-group input {
+    padding: 10px;
+    background-color: #0d1117;
+    border: 1px solid #30363d;
+    color: white;
+    border-radius: 6px;
+}
+
+.btn-submit {
+    padding: 12px;
+    background-color: #238636;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.btn-submit:hover {
+    background-color: #2ea043;
+}
+
+/* Recuadro del mensaje emergente procesado por JS */
+.resultado-oculto {
+    display: none;
+    margin-top: 20px;
+    padding: 15px;
+    background-color: #1f6beb;
+    color: white;
+    border-radius: 6px;
+    text-align: center;
+}
+
+
+/* --------------------------------------------------------------------------
+   7. PIE DE PÁGINA (FOOTER)
+   -------------------------------------------------------------------------- */
+.footer {
+    text-align: center;
+    padding: 25px;
+    background-color: #161b22;
+    border-top: 1px solid #30363d;
+    margin-top: 40px;
+    color: #8b949e;
+}
+
+/* --------------------------------------------------------------------------
+   8. ESTILOS EXCLUSIVOS PARA LA PANTALLA DE INICIO DE SESIÓN (LOGIN)
+   -------------------------------------------------------------------------- */
+.body-login {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: linear-gradient(135deg, #0d1117, #161b22, #0d1117);
+}
+
+.login-container {
+    background-color: #161b22;
+    padding: 40px;
+    border-radius: 12px;
+    border: 1px solid #30363d;
+    width: 90%;
+    max-width: 400px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5);
+    text-align: center;
+}
+
+.login-header h1 {
+    color: #58a6ff;
+    margin-bottom: 5px;
+    font-size: 1.8rem;
+}
+
+.login-header p {
+    color: #8b949e;
+    font-size: 0.9rem;
+    margin-bottom: 25px;
+}
+
+.btn-login {
+    width: 100%;
+    margin-top: 10px;
+}
+
+.mensaje-error-login {
+    display: none;
+    margin-top: 15px;
+    padding: 10px;
+    background-color: #f8514922;
+    border: 1px solid #f85149;
+    color: #f85149;
+    border-radius: 6px;
+    font-size: 0.85rem;
+}
+
+.login-footnote {
+    margin-top: 20px;
+    font-size: 0.8rem;
+    color: #8b949e;
+}
