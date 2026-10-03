@@ -175,6 +175,7 @@ function filtrarPorMarca(marca) {
 }
 
 
+
 // =======================================================
 // BLOQUE 4: LÓGICA DE LA CALCULADORA DE PRESUPUESTO
 // (Procesa los datos introducidos en el formulario)
@@ -188,20 +189,21 @@ function procesarFormulario(e) {
 
     let recomendacion = "";
 
-    // Lógica condicional de selección según presupuesto
-    if (presupuesto < 1500000) {
-        recomendacion = "Gama de Entrada: Te conviene una <strong>AMD RX 6600</strong> o una <strong>Intel Arc A750</strong>.";
+    // Lógica condicional ajustada a precios reales en COP
+    if (presupuesto < 950000) {
+        recomendacion = "⚠️ Lo sentimos, con ese presupuesto no alcanza para una tarjeta dedicada actual. La opción más económica empieza desde <strong>$950.000 COP (Intel Arc A580)</strong> o podrías considerar gráficos integrados.";
+    } else if (presupuesto >= 950000 && presupuesto < 1500000) {
+        recomendacion = "Gama de Entrada: Te conviene una <strong>Intel Arc A580</strong> ($950.000), una <strong>AMD RX 6600</strong> ($1.100.000) o una <strong>Intel Arc A750</strong> ($1.200.000).";
     } else if (presupuesto >= 1500000 && presupuesto < 3500000) {
-        recomendacion = "Gama Media: Te recomendamos una <strong>AMD RX 7800 XT</strong> o una <strong>NVIDIA RTX 4060 Ti / 4070</strong>.";
+        recomendacion = "Gama Media: Te recomendamos una <strong>AMD RX 7700 XT</strong> ($2.200.000), <strong>NVIDIA RTX 4060 Ti</strong> ($2.300.000) o <strong>AMD RX 7800 XT</strong> ($2.800.000).";
     } else {
-        recomendacion = "Gama Alta / Entusiasta: Apunta a una <strong>NVIDIA RTX 4080 Super / 4090</strong> o <strong>AMD RX 7900 XTX</strong>.";
+        recomendacion = "Gama Alta / Entusiasta: Apunta a una <strong>NVIDIA RTX 4070 Ti Super</strong> ($4.100.000), <strong>RTX 4080 Super</strong> ($5.200.000) o <strong>RTX 4090</strong> ($8.500.000).";
     }
 
     // Muestra el recuadro con el resultado
     mensaje.style.display = 'block';
-    mensaje.innerHTML = `¡Hola ${nombre}! Con un presupuesto de $${presupuesto.toLocaleString('es-CO')} COP, tu opción ideal es de ${recomendacion}`;
+    mensaje.innerHTML = `¡Hola ${nombre}! Con un presupuesto de $${presupuesto.toLocaleString('es-CO')} COP: <br><br>${recomendacion}`;
 }
-
 
 // =======================================================
 // BLOQUE 5: CONTROL DE SESIÓN Y VISTAS (LOGIN/REGISTRO EN INDEX)
