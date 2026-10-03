@@ -16,9 +16,9 @@
     <!-- ======================================================= -->
     <header class="header">
         <!-- Bloque del Logo -->
-        <div class="logo">
+        <figure class="logo">
             <h1>GPU Universe 🚀</h1>
-        </div>
+        </figure>
         
         <!-- Menú de navegación principal que conecta con las otras páginas -->
         <nav class="nav">
@@ -34,47 +34,47 @@
     <!-- ======================================================= -->
     <!-- SECCIÓN DE LOGIN/REGISTRO DENTRO DEL INDEX              -->
     <!-- ======================================================= -->
-    <div id="seccionAuth" class="login-container shadow-box" style="max-width: 450px; margin: 40px auto; padding: 25px; text-align: center;">
-        <div class="login-header">
+    <section id="seccionAuth" class="login-container shadow-box" style="max-width: 450px; margin: 40px auto; padding: 25px; text-align: center;">
+        <header class="login-header">
             <h2 id="tituloForm">Iniciar Sesión 🚀</h2>
             <p id="subtituloForm">Ingresa para desbloquear el catálogo de GPUs</p>
-        </div>
+        </header>
 
         <!-- Formulario Login -->
         <form id="formLogin" onsubmit="validarLogin(event)">
-            <div style="margin-bottom: 15px; text-align: left;">
+            <p style="margin-bottom: 15px; text-align: left;">
                 <label for="usuario">Usuario:</label>
                 <input type="text" id="usuario" required placeholder="Tu usuario" style="width: 100%; padding: 8px;">
-            </div>
-            <div style="margin-bottom: 15px; text-align: left;">
+            </p>
+            <p style="margin-bottom: 15px; text-align: left;">
                 <label for="password">Contraseña:</label>
                 <input type="password" id="password" required placeholder="Tu contraseña" style="width: 100%; padding: 8px;">
-            </div>
+            </p>
             <button type="submit" class="btn-submit" style="width: 100%; padding: 10px; cursor: pointer;">Entrar</button>
         </form>
 
         <!-- Formulario Registro (oculto de entrada) -->
         <form id="formRegistro" style="display: none;" onsubmit="registrarUsuario(event)">
-            <div style="margin-bottom: 15px; text-align: left;">
+            <p style="margin-bottom: 15px; text-align: left;">
                 <label for="nuevoUsuario">Crea un Usuario:</label>
                 <input type="text" id="nuevoUsuario" required placeholder="Ej: juan123" style="width: 100%; padding: 8px;">
-            </div>
-            <div style="margin-bottom: 15px; text-align: left;">
+            </p>
+            <p style="margin-bottom: 15px; text-align: left;">
                 <label for="nuevaPassword">Crea una Contraseña:</label>
                 <input type="password" id="nuevaPassword" required placeholder="Mínimo 4 caracteres" style="width: 100%; padding: 8px;">
-            </div>
+            </p>
             <button type="submit" class="btn-submit" style="width: 100%; padding: 10px; cursor: pointer;">Registrarme</button>
         </form>
 
-        <div id="mensajeError" style="margin-top: 15px; display: none; padding: 10px; border-radius: 5px;"></div>
+        <output id="mensajeError" style="margin-top: 15px; display: none; padding: 10px; border-radius: 5px;"></output>
 
         <p id="textoSwitch" style="margin-top: 15px; font-size: 0.9em;">
             ¿No tienes cuenta? <a href="#" onclick="mostrarRegistro(event)">Regístrate aquí</a>
         </p>
-    </div>
+    </section>
 
     <!-- AQUÍ EMPIEZA LA ENVOLTURA QUE OCULTA TODO EL CATÁLOGO -->
-    <div id="contenidoCatalogo" style="display: none;">
+    <main id="contenidoCatalogo" style="display: none;">
 
 
     <!-- ======================================================= -->
@@ -82,17 +82,17 @@
     <!-- (Recuadro visual de bienvenida con imagen de fondo)     -->
     <!-- ======================================================= -->
     <section class="hero">
-        <div class="hero-content">
+        <header class="hero-content">
             <h2>Explora las Mejores Tarjetas Gráficas del Mercado</h2>
             <p>Guía especializada sobre arquitectura, VRAM, rendimiento en juegos y trabajo profesional.</p>
             
             <!-- Grupo de botones con acceso directo a cada marca -->
-            <div class="hero-buttons">
+            <nav class="hero-buttons">
                 <a href="nvidia.html" class="btn-primary nvidia-btn">Ver NVIDIA</a>
                 <a href="amd.html" class="btn-primary amd-btn">Ver AMD</a>
                 <a href="intel.html" class="btn-primary intel-btn">Ver Intel</a>
-            </div>
-        </div>
+            </nav>
+        </header>
     </section>
 
 
@@ -104,27 +104,27 @@
         <h2 class="title-section">¿Para qué sirve una Tarjeta Gráfica (GPU)?</h2>
         
         <!-- Grid o cuadrícula que contiene las 3 tarjetas de información -->
-        <div class="info-grid">
+        <section class="info-grid">
             
             <!-- Tarjeta 1: Procesamiento visual -->
-            <div class="info-box">
+            <article class="info-box">
                 <h3>Procesamiento Visual</h3>
                 <p>La GPU procesa los datos visuales, convirtiendo código en fotogramas complejos en milisegundos. Libera al procesador (CPU) de la carga gráfica pesada.</p>
-            </div>
+            </article>
             
             <!-- Tarjeta 2: Renderizado -->
-            <div class="info-box">
+            <article class="info-box">
                 <h3>Renderizado y Edición</h3>
                 <p>Acelera la exportación de video en 4K/8K, efectos visuales y modelado en 3D en programas como Blender, Premiere o Cinema 4D.</p>
-            </div>
+            </article>
             
             <!-- Tarjeta 3: Inteligencia Artificial -->
-            <div class="info-box">
+            <article class="info-box">
                 <h3>Inteligencia Artificial</h3>
                 <p>Los núcleos especializados (Tensor Cores / Matrix Engines) permiten entrenar modelos de IA y ejecutar tecnologías como DLSS o XeSS.</p>
-            </div>
+            </article>
 
-        </div>
+        </section>
 
 
         <!-- ======================================================= -->
@@ -136,25 +136,25 @@
             
             <!-- Formulario interactivo que procesa la lógica en JS -->
             <form id="formGpu" class="form-custom" onsubmit="procesarFormulario(event)">
-                <div class="form-group">
+                <p class="form-group">
                     <label for="nombre">Tu Nombre:</label>
                     <input type="text" id="nombre" required placeholder="Ingresa tu nombre">
-                </div>
+                </p>
                 
-                <div class="form-group">
+                <p class="form-group">
                     <label for="presupuesto">Presupuesto Estimado (COP):</label>
                     <input type="number" id="presupuesto" required placeholder="Ej: 2000000">
-                </div>
+                </p>
                 
                 <button type="submit" class="btn-submit">Sugerir Gama Ideal</button>
             </form>
             
             <!-- Recuadro donde aparecerá la respuesta del presupuesto vía JS -->
-            <div id="mensajeResultado" class="resultado-oculto"></div>
+            <output id="mensajeResultado" class="resultado-oculto"></output>
         </section>
     </main>
 
-    </div>   
+    </main>   
     <!-- ======================================================= -->
     <!-- SECCIÓN 5: PIE DE PÁGINA (FOOTER)                       -->
     <!-- ======================================================= -->
