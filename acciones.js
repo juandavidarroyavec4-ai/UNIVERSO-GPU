@@ -1,6 +1,20 @@
 /* ==========================================================================
    LÓGICA JAVASCRIPT Y MANIPULACIÓN DINÁMICA DEL DOM
    ========================================================================== */
+   // =======================================================
+// CONTROL DE ACCESO (PROTECCIÓN DE PÁGINAS)
+// =======================================================
+
+// Verifica si el usuario ha iniciado sesión antes de mostrar el catálogo
+document.addEventListener('DOMContentLoaded', () => {
+    // Si NO está en la página de login y NO se ha autenticado, lo manda a login.html
+    const estaEnLogin = window.location.pathname.includes('login.html');
+    const usuarioLogueado = localStorage.getItem('sesionIniciada');
+
+    if (!estaEnLogin && !usuarioLogueado) {
+        window.location.href = "login.html";
+    }
+});
 
 // =======================================================
 // BLOQUE 1: BASE DE DATOS LOCAL DE LAS TARJETAS GRÁFICAS
@@ -218,23 +232,24 @@ document.addEventListener('DOMContentLoaded', () => {
 // BLOQUE 6: LÓGICA DE VALIDACIÓN DE INICIO DE SESIÓN
 // =======================================================
 function validarLogin(e) {
-    e.preventDefault(); // Evita recargar la página
+    e.preventDefault();
+    const user = document.getElementById('usuario').value;
+    const pass = document.getElementById('password').value;
+    const msg = document.getElementById('mensajeError');
 
-    const usuario = document.getElementById('usuario').value;
-    const password = document.getElementById('password').value;
-    const mensajeError = document.getElementById('mensajeError');
+    const passGuardada = localStorage.getItem(user);
 
-    // Credenciales de prueba
-    const usuarioValido = "admin";
-    const passwordValida = "1234";
-
-    if (usuario === usuarioValido && password === passwordValida) {
-        // Redirige al catálogo de inicio si los datos son correctos
+    if ((user === "admin" && pass === "1234") || (passGuardada && passGuardada === pass)) {
+        // Marcamos que el usuario ya inició sesión
+        localStorage.setItem('sesionIniciada', 'true');
+        // Redirigimos al catálogo
         window.location.href = "index.html";
     } else {
-        // Muestra alerta si son incorrectos
-        mensajeError.style.display = 'block';
-        mensajeError.innerHTML = "❌ Usuario o contraseña incorrectos. Intenta con admin / 1234";
+        msg.style.display = 'block';
+        msg.style.color = '#f85149';
+        msg.style.borderColor = '#f85149';
+        msg.style.backgroundColor = '#f8514922';
+        msg.innerText = "❌ Usuario o contraseña incorrectos.";
     }
 }
 
