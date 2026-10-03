@@ -261,39 +261,53 @@ function validarLogin(e) {
 }
 
 // =======================================================
-// LÓGICA DE LOGIN Y REGISTRO
+// LOGIN Y REGISTRO DENTRO DEL INDEX
 // =======================================================
 
-// Cambiar la vista a Registro
+// Comprobar estado al cargar la página
+document.addEventListener('DOMContentLoaded', () => {
+    const estaLogueado = localStorage.getItem('sesionIniciada') === 'true';
+    const authBox = document.getElementById('seccionAuth');
+    const catalogo = document.getElementById('contenidoCatalogo');
+
+    // Si ya inició sesión, ocultamos el login y mostramos el catálogo
+    if (estaLogueado) {
+        if (authBox) authBox.style.display = 'none';
+        if (catalogo) catalogo.style.display = 'block';
+    } else {
+        if (authBox) authBox.style.display = 'block';
+        if (catalogo) catalogo.style.display = 'none';
+    }
+});
+
 function mostrarRegistro(e) {
-    e.preventDefault();
+    if (e) e.preventDefault();
     document.getElementById('formLogin').style.display = 'none';
     document.getElementById('formRegistro').style.display = 'block';
     document.getElementById('tituloForm').innerText = "Crear Cuenta 📝";
-    document.getElementById('subtituloForm').innerText = "Regístrate para guardar tu perfil";
+    document.getElementById('subtituloForm').innerText = "Regístrate para continuar";
     document.getElementById('mensajeError').style.display = 'none';
     document.getElementById('textoSwitch').innerHTML = `¿Ya tienes cuenta? <a href="#" onclick="mostrarLogin(event)">Inicia sesión aquí</a>`;
 }
 
-// Cambiar la vista a Login
 function mostrarLogin(e) {
-    e.preventDefault();
+    if (e) e.preventDefault();
     document.getElementById('formLogin').style.display = 'block';
     document.getElementById('formRegistro').style.display = 'none';
     document.getElementById('tituloForm').innerText = "Iniciar Sesión 🚀";
-    document.getElementById('subtituloForm').innerText = "Ingresa tus credenciales para continuar";
+    document.getElementById('subtituloForm').innerText = "Ingresa para desbloquear el catálogo de GPUs";
     document.getElementById('mensajeError').style.display = 'none';
     document.getElementById('textoSwitch').innerHTML = `¿No tienes cuenta? <a href="#" onclick="mostrarRegistro(event)">Regístrate aquí</a>`;
 }
 
-// Guardar nuevo usuario en el navegador
 function registrarUsuario(e) {
     e.preventDefault();
-    const user = document.getElementById('nuevoUsuario').value;
-    const pass = document.getElementById('nuevaPassword').value;
+    const user = document.getElementById('nuevoUsuario').value.trim();
+    const pass = document.getElementById('nuevaPassword').value.trim();
     const msg = document.getElementById('mensajeError');
 
-    // Guardamos en el almacenamiento local del navegador
+    if (!user || !pass) return;
+
     localStorage.setItem(user, pass);
 
     msg.style.display = 'block';
@@ -304,22 +318,23 @@ function registrarUsuario(e) {
 
     setTimeout(() => {
         mostrarLogin(e);
-    }, 1500);
+    }, 1200);
 }
 
-// Validar credenciales al entrar
 function validarLogin(e) {
     e.preventDefault();
-    const user = document.getElementById('usuario').value;
-    const pass = document.getElementById('password').value;
+    const user = document.getElementById('usuario').value.trim();
+    const pass = document.getElementById('password').value.trim();
     const msg = document.getElementById('mensajeError');
 
-    // Busca la contraseña guardada del usuario ingresado
     const passGuardada = localStorage.getItem(user);
 
-    // Cuenta admin por defecto O usuario registrado previamente
     if ((user === "admin" && pass === "1234") || (passGuardada && passGuardada === pass)) {
-        window.location.href = "index.html"; // Redirige al catálogo
+        localStorage.setItem('sesionIniciada', 'true');
+        
+        // Muestra el catálogo de inmediato sin recargar la página
+        document.getElementById('seccionAuth').style.display = 'none';
+        document.getElementById('contenidoCatalogo').style.display = 'block';
     } else {
         msg.style.display = 'block';
         msg.style.color = '#f85149';
@@ -327,4 +342,10 @@ function validarLogin(e) {
         msg.style.backgroundColor = '#f8514922';
         msg.innerText = "❌ Usuario o contraseña incorrectos.";
     }
+}
+
+// Función opcional para cerrar sesión si la quieres agregar en algún botón
+function cerrarSesion() {
+    localStorage.removeItem('sesionIniciada');
+    window.location.reload();
 }

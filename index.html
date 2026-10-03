@@ -7,8 +7,9 @@
     <!-- Vinculación con los estilos globales -->
     <link rel="stylesheet" href="estilos.css">
 </head>
-<body>
 
+<body>
+    
     <!-- ======================================================= -->
     <!-- SECCIÓN 1: ENCABEZADO PRINCIPAL Y BARRA DE NAVEGACIÓN   -->
     <!-- (Contiene el logo de la página y el menú multipágina)   -->
@@ -29,6 +30,51 @@
             </ul>
         </nav>
     </header>
+
+    <!-- ======================================================= -->
+    <!-- SECCIÓN DE LOGIN/REGISTRO DENTRO DEL INDEX              -->
+    <!-- ======================================================= -->
+    <div id="seccionAuth" class="login-container shadow-box" style="max-width: 450px; margin: 40px auto; padding: 25px; text-align: center;">
+        <div class="login-header">
+            <h2 id="tituloForm">Iniciar Sesión 🚀</h2>
+            <p id="subtituloForm">Ingresa para desbloquear el catálogo de GPUs</p>
+        </div>
+
+        <!-- Formulario Login -->
+        <form id="formLogin" onsubmit="validarLogin(event)">
+            <div style="margin-bottom: 15px; text-align: left;">
+                <label for="usuario">Usuario:</label>
+                <input type="text" id="usuario" required placeholder="Tu usuario" style="width: 100%; padding: 8px;">
+            </div>
+            <div style="margin-bottom: 15px; text-align: left;">
+                <label for="password">Contraseña:</label>
+                <input type="password" id="password" required placeholder="Tu contraseña" style="width: 100%; padding: 8px;">
+            </div>
+            <button type="submit" class="btn-submit" style="width: 100%; padding: 10px; cursor: pointer;">Entrar</button>
+        </form>
+
+        <!-- Formulario Registro (oculto de entrada) -->
+        <form id="formRegistro" style="display: none;" onsubmit="registrarUsuario(event)">
+            <div style="margin-bottom: 15px; text-align: left;">
+                <label for="nuevoUsuario">Crea un Usuario:</label>
+                <input type="text" id="nuevoUsuario" required placeholder="Ej: juan123" style="width: 100%; padding: 8px;">
+            </div>
+            <div style="margin-bottom: 15px; text-align: left;">
+                <label for="nuevaPassword">Crea una Contraseña:</label>
+                <input type="password" id="nuevaPassword" required placeholder="Mínimo 4 caracteres" style="width: 100%; padding: 8px;">
+            </div>
+            <button type="submit" class="btn-submit" style="width: 100%; padding: 10px; cursor: pointer;">Registrarme</button>
+        </form>
+
+        <div id="mensajeError" style="margin-top: 15px; display: none; padding: 10px; border-radius: 5px;"></div>
+
+        <p id="textoSwitch" style="margin-top: 15px; font-size: 0.9em;">
+            ¿No tienes cuenta? <a href="#" onclick="mostrarRegistro(event)">Regístrate aquí</a>
+        </p>
+    </div>
+
+    <!-- AQUÍ EMPIEZA LA ENVOLTURA QUE OCULTA TODO EL CATÁLOGO -->
+    <div id="contenidoCatalogo" style="display: none;">
 
 
     <!-- ======================================================= -->
@@ -108,7 +154,7 @@
         </section>
     </main>
 
-
+    </div>   
     <!-- ======================================================= -->
     <!-- SECCIÓN 5: PIE DE PÁGINA (FOOTER)                       -->
     <!-- ======================================================= -->
