@@ -237,3 +237,72 @@ function validarLogin(e) {
         mensajeError.innerHTML = "❌ Usuario o contraseña incorrectos. Intenta con admin / 1234";
     }
 }
+
+// =======================================================
+// LÓGICA DE LOGIN Y REGISTRO
+// =======================================================
+
+// Cambiar la vista a Registro
+function mostrarRegistro(e) {
+    e.preventDefault();
+    document.getElementById('formLogin').style.display = 'none';
+    document.getElementById('formRegistro').style.display = 'block';
+    document.getElementById('tituloForm').innerText = "Crear Cuenta 📝";
+    document.getElementById('subtituloForm').innerText = "Regístrate para guardar tu perfil";
+    document.getElementById('mensajeError').style.display = 'none';
+    document.getElementById('textoSwitch').innerHTML = `¿Ya tienes cuenta? <a href="#" onclick="mostrarLogin(event)">Inicia sesión aquí</a>`;
+}
+
+// Cambiar la vista a Login
+function mostrarLogin(e) {
+    e.preventDefault();
+    document.getElementById('formLogin').style.display = 'block';
+    document.getElementById('formRegistro').style.display = 'none';
+    document.getElementById('tituloForm').innerText = "Iniciar Sesión 🚀";
+    document.getElementById('subtituloForm').innerText = "Ingresa tus credenciales para continuar";
+    document.getElementById('mensajeError').style.display = 'none';
+    document.getElementById('textoSwitch').innerHTML = `¿No tienes cuenta? <a href="#" onclick="mostrarRegistro(event)">Regístrate aquí</a>`;
+}
+
+// Guardar nuevo usuario en el navegador
+function registrarUsuario(e) {
+    e.preventDefault();
+    const user = document.getElementById('nuevoUsuario').value;
+    const pass = document.getElementById('nuevaPassword').value;
+    const msg = document.getElementById('mensajeError');
+
+    // Guardamos en el almacenamiento local del navegador
+    localStorage.setItem(user, pass);
+
+    msg.style.display = 'block';
+    msg.style.color = '#3fb950';
+    msg.style.borderColor = '#3fb950';
+    msg.style.backgroundColor = '#3fb95022';
+    msg.innerText = "¡Cuenta creada con éxito! Ahora inicia sesión.";
+
+    setTimeout(() => {
+        mostrarLogin(e);
+    }, 1500);
+}
+
+// Validar credenciales al entrar
+function validarLogin(e) {
+    e.preventDefault();
+    const user = document.getElementById('usuario').value;
+    const pass = document.getElementById('password').value;
+    const msg = document.getElementById('mensajeError');
+
+    // Busca la contraseña guardada del usuario ingresado
+    const passGuardada = localStorage.getItem(user);
+
+    // Cuenta admin por defecto O usuario registrado previamente
+    if ((user === "admin" && pass === "1234") || (passGuardada && passGuardada === pass)) {
+        window.location.href = "index.html"; // Redirige al catálogo
+    } else {
+        msg.style.display = 'block';
+        msg.style.color = '#f85149';
+        msg.style.borderColor = '#f85149';
+        msg.style.backgroundColor = '#f8514922';
+        msg.innerText = "❌ Usuario o contraseña incorrectos.";
+    }
+}

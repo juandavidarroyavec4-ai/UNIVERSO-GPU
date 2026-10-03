@@ -3,41 +3,54 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Iniciar Sesión - GPU Universe</title>
-    <!-- Vinculación con los estilos globales -->
+    <title>Acceso - GPU Universe</title>
     <link rel="stylesheet" href="estilos.css">
 </head>
 <body class="body-login">
 
-    <!-- ======================================================= -->
-    <!-- RECUADRO PRINCIPAL: FORMULARIO DE INICIO DE SESIÓN      -->
-    <!-- (Pantalla de acceso antes de entrar al portal web)       -->
-    <!-- ======================================================= -->
     <div class="login-container shadow-box">
         <div class="login-header">
-            <h1>GPU Universe 🚀</h1>
-            <p>Ingresa tus credenciales para acceder al catálogo</p>
+            <h1 id="tituloForm">Iniciar Sesión 🚀</h1>
+            <p id="subtituloForm">Ingresa tus credenciales para continuar</p>
         </div>
 
-        <!-- Formulario que procesa la validación con JavaScript -->
+        <!-- FORMULARIO DE LOGIN -->
         <form id="formLogin" class="form-custom" onsubmit="validarLogin(event)">
             <div class="form-group">
                 <label for="usuario">Usuario:</label>
-                <input type="text" id="usuario" required placeholder="Ej: admin">
+                <input type="text" id="usuario" required placeholder="Tu usuario">
             </div>
 
             <div class="form-group">
                 <label for="password">Contraseña:</label>
-                <input type="password" id="password" required placeholder="Ej: 1234">
+                <input type="password" id="password" required placeholder="Tu contraseña">
             </div>
 
-            <button type="submit" class="btn-submit btn-login">Iniciar Sesión</button>
+            <button type="submit" class="btn-submit btn-login">Entrar</button>
         </form>
 
-        <!-- Mensaje de error si la contraseña o usuario son incorrectos -->
+        <!-- FORMULARIO DE REGISTRO (Oculto al inicio) -->
+        <form id="formRegistro" class="form-custom" style="display: none;" onsubmit="registrarUsuario(event)">
+            <div class="form-group">
+                <label for="nuevoUsuario">Crea un Usuario:</label>
+                <input type="text" id="nuevoUsuario" required placeholder="Ej: juan123">
+            </div>
+
+            <div class="form-group">
+                <label for="nuevaPassword">Crea una Contraseña:</label>
+                <input type="password" id="nuevaPassword" required placeholder="Mínimo 4 caracteres">
+            </div>
+
+            <button type="submit" class="btn-submit btn-login">Registrarme</button>
+        </form>
+
+        <!-- Mensajes de alerta/éxito -->
         <div id="mensajeError" class="mensaje-error-login"></div>
-        
-        <p class="login-footnote">Credenciales de prueba: Usuario: <strong>admin</strong> | Clave: <strong>1234</strong></p>
+
+        <!-- Botones para alternar entre Login y Registro -->
+        <p class="login-footnote" id="textoSwitch">
+            ¿No tienes cuenta? <a href="#" onclick="mostrarRegistro(event)">Regístrate aquí</a>
+        </p>
     </div>
 
     <script src="acciones.js"></script>
