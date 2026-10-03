@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ecosistema AMD Radeon - GPU Universe</title>
+    <!-- Vinculación con los estilos globales -->
+    <link rel="stylesheet" href="estilos.css">
+</head>
+
+<!-- El atributo data-marca="AMD" indica a JavaScript que solo cargue productos AMD -->
+<body data-marca="AMD">
+
+    <!-- ======================================================= -->
+    <!-- SECCIÓN 1: ENCABEZADO Y MENU (BORDE ROJO AMD)          -->
+    <!-- (Aplica el estilo del borde inferior distintivo de AMD) -->
+    <!-- ======================================================= -->
+    <header class="header border-amd">
+        <!-- Bloque del Logo con color temático -->
+        <div class="logo">
+            <h1 class="color-amd">AMD Radeon 🔴</h1>
+        </div>
+        
+        <!-- Menú de navegación común -->
+        <nav class="nav">
+            <ul>
+                <li><a href="index.html">Inicio</a></li>
+                <li><a href="nvidia.html">NVIDIA</a></li>
+                <li><a href="amd.html" class="active">AMD Radeon</a></li>
+                <li><a href="intel.html">Intel Arc</a></li>
+            </ul>
+        </nav>
+    </header>
+
+
+    <!-- ======================================================= -->
+    <!-- SECCIÓN 2: BANNER TEMÁTICO DE LA MARCA                 -->
+    <!-- (Fondo degradado rojo/negro de la marca AMD)            -->
+    <!-- ======================================================= -->
+    <section class="banner-brand bg-amd">
+        <h2>Catálogo y Ecosistema AMD Radeon</h2>
+        <p>Líderes en rendimiento nativo por dólar, arquitectura RDNA 3, amplios buffers de VRAM y tecnología FSR.</p>
+    </section>
+
+
+    <main class="container section">
+        
+        <!-- ======================================================= -->
+        <!-- SECCIÓN 3: RECUADRO CON TECNOLOGÍAS EXCLUSIVAS DE AMD   -->
+        <!-- (Bloque informativo explicativo para la profesora)      -->
+        <!-- ======================================================= -->
+        <section class="tech-info">
+            <h3>Tecnologías Clave de AMD Radeon:</h3>
+            <ul class="features-list">
+                <li><strong>FidelityFX Super Resolution (FSR):</strong> Algoritmo de reescalado abierto y compatible con múltiples generaciones de GPUs.</li>
+                <li><strong>Arquitectura RDNA 3:</strong> Diseño pionero con tecnología de chiplets para mayor eficiencia energética y potencia.</li>
+                <li><strong>Smart Access Memory (SAM):</strong> Otorga al procesador Ryzen acceso directo a la memoria VRAM de la GPU para ganar FPS.</li>
+            </ul>
+        </section>
+
+
+        <!-- ======================================================= -->
+        <!-- SECCIÓN 4: CATÁLOGO INTERACTIVO DE AMD CON BUSCADOR     -->
+        <!-- (Recuadro del filtro e inyección dinámica de tarjetas)  -->
+        <!-- ======================================================= -->
+        <section class="catalog-section">
+            <h2 class="title-section">Modelos Radeon RX Disponibles</h2>
+            
+            <!-- Recuadro del Buscador / Campo de Texto filtrador -->
+            <div class="filter-container">
+                <input type="text" id="searchInput" placeholder="Buscar por modelo (ej. RX 7800 XT, 7900...)" onkeyup="filtrarPorMarca('AMD')">
+            </div>
+
+            <!-- CONTENEDOR DINÁMICO: JavaScript llena este recuadro con las cards de AMD -->
+            <div id="gpuContainer" class="cards-grid"></div>
+        </section>
+    </main>
+
+
+    <!-- ======================================================= -->
+    <!-- SECCIÓN 5: PIE DE PÁGINA (FOOTER)                       -->
+    <!-- ======================================================= -->
+    <footer class="footer">
+        <p>&copy; 2026 GPU Universe - Sección AMD Radeon</p>
+    </footer>
+
+    <!-- Vinculación del script funcional JavaScript -->
+    <script src="acciones.js"></script>
+</body>
+</html>

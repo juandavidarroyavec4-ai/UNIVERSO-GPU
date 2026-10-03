@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ecosistema NVIDIA GeForce - GPU Universe</title>
+    <link rel="stylesheet" href="estilos.css">
+</head>
+<body data-marca="NVIDIA">
+
+    <!-- ======================================================= -->
+    <!-- ENCABEZADO CON BORDE PERSONALIZADO PARA NVIDIA           -->
+    <!-- ======================================================= -->
+    <header class="header border-nvidia">
+        <div class="logo">
+            <h1 class="color-nvidia">NVIDIA GeForce 🟢</h1>
+        </div>
+        <nav class="nav">
+            <ul>
+                <li><a href="index.html">Inicio</a></li>
+                <li><a href="nvidia.html" class="active">NVIDIA</a></li>
+                <li><a href="amd.html">AMD Radeon</a></li>
+                <li><a href="intel.html">Intel Arc</a></li>
+            </ul>
+        </nav>
+    </header>
+
+
+    <!-- ======================================================= -->
+    <!-- BANNER TEMÁTICO DE LA MARCA                             -->
+    <!-- ======================================================= -->
+    <section class="banner-brand bg-nvidia">
+        <h2>Catálogo y Ecosistema NVIDIA</h2>
+        <p>Líderes en Trazado de Rayos en tiempo real, reescalado DLSS 3.5 y aceleración de Inteligencia Artificial.</p>
+    </section>
+
+
+    <main class="container section">
+        
+        <!-- ======================================================= -->
+        <!-- RECUADRO CON TECNOLOGÍAS EXCLUSIVAS DE LA MARCA        -->
+        <!-- ======================================================= -->
+        <section class="tech-info">
+            <h3>Tecnologías Clave de NVIDIA:</h3>
+            <ul class="features-list">
+                <li><strong>RTX / Ray Tracing:</strong> Simulación precisa de la física de la luz usando RT Cores de última generación.</li>
+                <li><strong>DLSS (Deep Learning Super Sampling):</strong> Generación de fotogramas e imagen mediante Tensor Cores e IA.</li>
+                <li><strong>NVENC Encoder:</strong> Chip dedicado para transmisión/streaming sin perder rendimiento en juegos.</li>
+            </ul>
+        </section>
+
+
+        <!-- ======================================================= -->
+        <!-- CATÁLOGO INTERACTIVO DE NVIDIAS CON BUSCADOR            -->
+        <!-- ======================================================= -->
+        <section class="catalog-section">
+            <h2 class="title-section">Modelos GeForce Disponibles</h2>
+            
+            <!-- Recuadro del Buscador / Campo de Texto -->
+            <div class="filter-container">
+                <input type="text" id="searchInput" placeholder="Buscar por modelo (ej. RTX 4070, 4090...)" onkeyup="filtrarPorMarca('NVIDIA')">
+            </div>
+
+            <!-- CONTENEDOR DINÁMICO: Aquí JavaScript inyecta los recuadros de cada GPU -->
+            <div id="gpuContainer" class="cards-grid"></div>
+        </section>
+    </main>
+
+
+    <!-- ======================================================= -->
+    <!-- PIE DE PÁGINA                                           -->
+    <!-- ======================================================= -->
+    <footer class="footer">
+        <p>&copy; 2026 GPU Universe - Sección NVIDIA GeForce</p>
+    </footer>
+
+    <script src="acciones.js"></script>
+</body>
+</html>

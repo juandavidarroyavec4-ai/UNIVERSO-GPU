@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Iniciar Sesión - GPU Universe</title>
+    <!-- Vinculación con los estilos globales -->
+    <link rel="stylesheet" href="estilos.css">
+</head>
+<body class="body-login">
+
+    <!-- ======================================================= -->
+    <!-- RECUADRO PRINCIPAL: FORMULARIO DE INICIO DE SESIÓN      -->
+    <!-- (Pantalla de acceso antes de entrar al portal web)       -->
+    <!-- ======================================================= -->
+    <div class="login-container shadow-box">
+        <div class="login-header">
+            <h1>GPU Universe 🚀</h1>
+            <p>Ingresa tus credenciales para acceder al catálogo</p>
+        </div>
+
+        <!-- Formulario que procesa la validación con JavaScript -->
+        <form id="formLogin" class="form-custom" onsubmit="validarLogin(event)">
+            <div class="form-group">
+                <label for="usuario">Usuario:</label>
+                <input type="text" id="usuario" required placeholder="Ej: admin">
+            </div>
+
+            <div class="form-group">
+                <label for="password">Contraseña:</label>
+                <input type="password" id="password" required placeholder="Ej: 1234">
+            </div>
+
+            <button type="submit" class="btn-submit btn-login">Iniciar Sesión</button>
+        </form>
+
+        <!-- Mensaje de error si la contraseña o usuario son incorrectos -->
+        <div id="mensajeError" class="mensaje-error-login"></div>
+        
+        <p class="login-footnote">Credenciales de prueba: Usuario: <strong>admin</strong> | Clave: <strong>1234</strong></p>
+    </div>
+
+    <script src="acciones.js"></script>
+</body>
+</html>

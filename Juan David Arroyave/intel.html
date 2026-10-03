@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ecosistema Intel Arc - GPU Universe</title>
+    <!-- Vinculación con los estilos globales -->
+    <link rel="stylesheet" href="estilos.css">
+</head>
+
+<!-- El atributo data-marca="Intel" indica a JavaScript que cargue tarjetas Intel -->
+<body data-marca="Intel">
+
+    <!-- ======================================================= -->
+    <!-- SECCIÓN 1: ENCABEZADO Y MENÚ (BORDE AZUL INTEL)         -->
+    <!-- (Aplica el estilo del borde inferior distintivo de Intel)-->
+    <!-- ======================================================= -->
+    <header class="header border-intel">
+        <!-- Bloque del Logo con color temático -->
+        <div class="logo">
+            <h1 class="color-intel">Intel Arc Graphics 🔵</h1>
+        </div>
+        
+        <!-- Menú de navegación común -->
+        <nav class="nav">
+            <ul>
+                <li><a href="index.html">Inicio</a></li>
+                <li><a href="nvidia.html">NVIDIA</a></li>
+                <li><a href="amd.html">AMD Radeon</a></li>
+                <li><a href="intel.html" class="active">Intel Arc</a></li>
+            </ul>
+        </nav>
+    </header>
+
+
+    <!-- ======================================================= -->
+    <!-- SECCIÓN 2: BANNER TEMÁTICO DE LA MARCA                 -->
+    <!-- (Fondo degradado azul/negro de la marca Intel)          -->
+    <!-- ======================================================= -->
+    <section class="banner-brand bg-intel">
+        <h2>Catálogo y Ecosistema Intel Arc</h2>
+        <p>Innovación en la gama media/económica, arquitectura Xe-HPG, potentes codificadores AV1 y reescalado por IA XeSS.</p>
+    </section>
+
+
+    <main class="container section">
+        
+        <!-- ======================================================= -->
+        <!-- SECCIÓN 3: RECUADRO CON TECNOLOGÍAS EXCLUSIVAS INTEL   -->
+        <!-- (Bloque informativo explicativo)                        -->
+        <!-- ======================================================= -->
+        <section class="tech-info">
+            <h3>Tecnologías Clave de Intel Arc:</h3>
+            <ul class="features-list">
+                <li><strong>Intel XeSS (Xe Super Sampling):</strong> Reescalado impulsado por Inteligencia Artificial y núcleos XMX integrados.</li>
+                <li><strong>Codificador de Video AV1 Hardware:</strong> Aceleración nativa para creadores de contenido y transmisión en alta calidad.</li>
+                <li><strong>Deep Link:</strong> Trabajo en conjunto entre el procesador Intel Core (iGPU) y la tarjeta discreta Intel Arc.</li>
+            </ul>
+        </section>
+
+
+        <!-- ======================================================= -->
+        <!-- SECCIÓN 4: CATÁLOGO INTERACTIVO DE INTEL CON BUSCADOR  -->
+        <!-- (Recuadro del filtro e inyección dinámica de tarjetas)  -->
+        <!-- ======================================================= -->
+        <section class="catalog-section">
+            <h2 class="title-section">Modelos Intel Arc Disponibles</h2>
+            
+            <!-- Recuadro del Buscador / Campo de Texto filtrador -->
+            <div class="filter-container">
+                <input type="text" id="searchInput" placeholder="Buscar por modelo (ej. Arc A770, A750...)" onkeyup="filtrarPorMarca('Intel')">
+            </div>
+
+            <!-- CONTENEDOR DINÁMICO: JavaScript llena este recuadro con las cards de Intel -->
+            <div id="gpuContainer" class="cards-grid"></div>
+        </section>
+    </main>
+
+
+    <!-- ======================================================= -->
+    <!-- SECCIÓN 5: PIE DE PÁGINA (FOOTER)                       -->
+    <!-- ======================================================= -->
+    <footer class="footer">
+        <p>&copy; 2026 GPU Universe - Sección Intel Arc Graphics</p>
+    </footer>
+
+    <!-- Vinculación del script funcional JavaScript -->
+    <script src="acciones.js"></script>
+</body>
+</html>
