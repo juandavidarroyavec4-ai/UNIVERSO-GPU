@@ -1,20 +1,6 @@
 /* ==========================================================================
    LÓGICA JAVASCRIPT Y MANIPULACIÓN DINÁMICA DEL DOM
    ========================================================================== */
-   // =======================================================
-// CONTROL DE ACCESO (PROTECCIÓN DE PÁGINAS)
-// =======================================================
-
-// Verifica si el usuario ha iniciado sesión antes de mostrar el catálogo
-document.addEventListener('DOMContentLoaded', () => {
-    // Si NO está en la página de login y NO se ha autenticado, lo manda a login.html
-    const estaEnLogin = window.location.pathname.includes('login.html');
-    const usuarioLogueado = localStorage.getItem('sesionIniciada');
-
-    if (!estaEnLogin && !usuarioLogueado) {
-        window.location.href = "login.html";
-    }
-});
 
 // =======================================================
 // BLOQUE 1: BASE DE DATOS LOCAL DE LAS TARJETAS GRÁFICAS
@@ -169,15 +155,15 @@ function renderizarTarjetas(lista) {
 
 
 // =======================================================
-// BLOQUE 3: FUNCIÓN DEL BUSCADOR EN TIEMPO REAL
-// (Filtra la lista según lo que el usuario escribe)
+// BLOQUE 3: FUNCIÓN DEL BUSCADOR Y FILTRADO
+// (Filtra la lista según marca o lo que el usuario escribe)
 // =======================================================
 function filtrarPorMarca(marca) {
     const busqueda = document.getElementById('searchInput')?.value.toLowerCase() || '';
     
     // Filtra el arreglo según la marca y el texto escrito en el buscador
     const resultado = tarjetasGpu.filter(gpu => {
-        const coincideMarca = gpu.marca === marca;
+        const coincideMarca = marca ? gpu.marca === marca : true;
         const coincideBusqueda = gpu.nombre.toLowerCase().includes(busqueda) || 
                                  gpu.uso.toLowerCase().includes(busqueda) ||
                                  gpu.vram.toLowerCase().includes(busqueda);
@@ -218,59 +204,23 @@ function procesarFormulario(e) {
 
 
 // =======================================================
-// BLOQUE 5: DETECCION AUTOMÁTICA DE LA PÁGINA ACTUAL
-// =======================================================
-// Proteger las páginas del catálogo
-document.addEventListener('DOMContentLoaded', () => {
-    // Detecta si la página actual es la de login
-    const esPaginaLogin = window.location.pathname.endsWith('login.html');
-    const estaLogueado = localStorage.getItem('sesionIniciada') === 'true';
-
-    // Si NO está en login y NO ha iniciado sesión, lo mandamos a login.html
-    if (!esPaginaLogin && !estaLogueado) {
-        window.location.href = "login.html";
-    }
-});
-
-// =======================================================
-// BLOQUE 6: LÓGICA DE VALIDACIÓN DE INICIO DE SESIÓN
-// =======================================================
-// Validar credenciales al entrar
-function validarLogin(e) {
-    e.preventDefault();
-    const user = document.getElementById('usuario').value;
-    const pass = document.getElementById('password').value;
-    const msg = document.getElementById('mensajeError');
-
-    const passGuardada = localStorage.getItem(user);
-
-    // Si el usuario y contraseña son correctos:
-    if ((user === "admin" && pass === "1234") || (passGuardada && passGuardada === pass)) {
-        // Guardamos el estado de la sesión en el navegador
-        localStorage.setItem('sesionIniciada', 'true');
-        
-        // Redirigimos al catálogo
-        window.location.href = "index.html";
-    } else {
-        msg.style.display = 'block';
-        msg.style.color = '#f85149';
-        msg.style.borderColor = '#f85149';
-        msg.style.backgroundColor = '#f8514922';
-        msg.innerText = "❌ Usuario o contraseña incorrectos.";
-    }
-}
-
-// =======================================================
-// LOGIN Y REGISTRO DENTRO DEL INDEX
+// BLOQUE 5: CONTROL DE SESIÓN Y VISTAS (LOGIN/REGISTRO EN INDEX)
 // =======================================================
 
-// Comprobar estado al cargar la página
+// Comprobar estado al cargar la página en el navegador
 document.addEventListener('DOMContentLoaded', () => {
     const estaLogueado = localStorage.getItem('sesionIniciada') === 'true';
     const authBox = document.getElementById('seccionAuth');
     const catalogo = document.getElementById('contenidoCatalogo');
 
-    // Si ya inició sesión, ocultamos el login y mostramos el catálogo
+    // Si la página subpáginas (nvidia.html, amd.html, intel.html) llaman esta lógica, carga sus tarjetas automáticamente
+    const paginaActual = window.location.pathname.split('/').pop();
+    if (paginaActual === 'nvidia.html') filtrarPorMarca('NVIDIA');
+    else if (paginaActual === 'amd.html') filtrarPorMarca('AMD');
+    else if (paginaActual === 'intel.html') filtrarPorMarca('Intel');
+    else if (document.getElementById('gpuContainer')) renderizarTarjetas(tarjetasGpu);
+
+    // Muestra u oculta las secciones en index.html
     if (estaLogueado) {
         if (authBox) authBox.style.display = 'none';
         if (catalogo) catalogo.style.display = 'block';
@@ -280,6 +230,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 });
 
+// Cambiar formulario a modo Registro
 function mostrarRegistro(e) {
     if (e) e.preventDefault();
     document.getElementById('formLogin').style.display = 'none';
@@ -290,6 +241,7 @@ function mostrarRegistro(e) {
     document.getElementById('textoSwitch').innerHTML = `¿Ya tienes cuenta? <a href="#" onclick="mostrarLogin(event)">Inicia sesión aquí</a>`;
 }
 
+// Cambiar formulario a modo Login
 function mostrarLogin(e) {
     if (e) e.preventDefault();
     document.getElementById('formLogin').style.display = 'block';
@@ -300,6 +252,7 @@ function mostrarLogin(e) {
     document.getElementById('textoSwitch').innerHTML = `¿No tienes cuenta? <a href="#" onclick="mostrarRegistro(event)">Regístrate aquí</a>`;
 }
 
+// Guardar nuevo usuario registrado en el almacenamiento local
 function registrarUsuario(e) {
     e.preventDefault();
     const user = document.getElementById('nuevoUsuario').value.trim();
@@ -321,6 +274,7 @@ function registrarUsuario(e) {
     }, 1200);
 }
 
+// Validar credenciales de acceso al hacer submit
 function validarLogin(e) {
     e.preventDefault();
     const user = document.getElementById('usuario').value.trim();
@@ -332,9 +286,11 @@ function validarLogin(e) {
     if ((user === "admin" && pass === "1234") || (passGuardada && passGuardada === pass)) {
         localStorage.setItem('sesionIniciada', 'true');
         
-        // Muestra el catálogo de inmediato sin recargar la página
-        document.getElementById('seccionAuth').style.display = 'none';
-        document.getElementById('contenidoCatalogo').style.display = 'block';
+        // Revela el catálogo de inmediato sin recargar la página
+        const authBox = document.getElementById('seccionAuth');
+        const catalogo = document.getElementById('contenidoCatalogo');
+        if (authBox) authBox.style.display = 'none';
+        if (catalogo) catalogo.style.display = 'block';
     } else {
         msg.style.display = 'block';
         msg.style.color = '#f85149';
@@ -344,7 +300,7 @@ function validarLogin(e) {
     }
 }
 
-// Función opcional para cerrar sesión si la quieres agregar en algún botón
+// Cerrar sesión
 function cerrarSesion() {
     localStorage.removeItem('sesionIniciada');
     window.location.reload();
